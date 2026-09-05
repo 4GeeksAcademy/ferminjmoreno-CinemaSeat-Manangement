@@ -1,26 +1,79 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hello World with Typescript</title>
+    <title>Cinema Seat Management</title>
   </head>
-  <body class="min-h-screen bg-slate-100 text-slate-900">
-    <main class="mx-auto flex min-h-screen max-w-2xl flex-col items-center justify-center gap-6 p-6">
-      <h1 class="text-4xl font-bold tracking-tight">Hello World with Typescript</h1>
+  <body class="min-h-screen bg-black text-neutral-100 antialiased">
+    <main class="mx-auto flex min-h-screen max-w-5xl flex-col gap-8 p-6">
+      <header class="text-center">
+        <h1
+          class="bg-gradient-to-b from-red-400 to-red-700 bg-clip-text text-4xl font-black tracking-tight text-transparent"
+        >
+          CINEMA SEAT MANAGEMENT
+        </h1>
+        <p class="mt-1 text-sm text-neutral-500">
+          Haz clic en un asiento para reservarlo o liberarlo
+        </p>
+      </header>
 
-      <section class="w-full max-w-md overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-        <img
-          src="/rigo-baby.jpg"
-          alt="Hello Rigo"
-          class="h-64 w-full bg-slate-50 object-contain p-2"
-        />
-        <div class="p-5">
-          <h2 class="text-xl font-semibold text-slate-900">Hello Rigo</h2>
-          <p id="app" class="mt-2 text-sm text-slate-600"></p>
+      <div class="flex flex-col items-center gap-2">
+        <div
+          class="h-2 w-3/4 rounded-full bg-gradient-to-r from-transparent via-red-500 to-transparent shadow-[0_0_40px_12px_rgba(239,68,68,0.35)]"
+        ></div>
+        <span class="text-xs uppercase tracking-[0.4em] text-neutral-500">Pantalla</span>
+      </div>
+
+      <section class="rounded-2xl border border-red-900/40 bg-neutral-950/60 p-4 shadow-2xl sm:p-6">
+        <div id="seatMap" class="overflow-x-auto"></div>
+      </section>
+
+      <section class="flex flex-wrap items-center justify-center gap-6 text-sm">
+        <div class="flex items-center gap-2">
+          <span
+            class="h-6 w-6 rounded-md border border-red-500/60 bg-gradient-to-b from-red-600/30 to-red-900/30"
+          ></span>
+          <span class="text-neutral-400">Libre (L)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span
+            class="h-6 w-6 rounded-md border border-red-300 bg-gradient-to-b from-red-500 to-red-800 shadow-[0_0_12px_rgba(239,68,68,0.7)]"
+          ></span>
+          <span class="text-neutral-400">Ocupado (X)</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="h-6 w-6 rounded-md border-2 border-amber-300 bg-amber-400/20"></span>
+          <span class="text-neutral-400">Sugerencia de adyacentes</span>
         </div>
       </section>
+
+      <section class="grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-neutral-800 bg-neutral-950/60 p-5">
+          <h2 class="mb-3 text-sm font-semibold uppercase tracking-widest text-red-400">
+            Estado de la sala
+          </h2>
+          <dl id="stats" class="grid grid-cols-3 gap-3 text-center"></dl>
+          <p id="suggestion" class="mt-4 text-sm text-neutral-400"></p>
+        </div>
+
+        <div class="rounded-2xl border border-neutral-800 bg-neutral-950/60 p-5">
+          <h2 class="mb-3 text-sm font-semibold uppercase tracking-widest text-red-400">
+            Escenarios
+          </h2>
+          <div id="scenarios" class="flex flex-wrap gap-2"></div>
+          <button
+            id="btnAdyacentes"
+            class="mt-4 w-full rounded-lg border border-amber-400/60 bg-amber-400/10 px-4 py-2 text-sm font-semibold text-amber-300 transition hover:bg-amber-400/20"
+          >
+            Buscar 2 asientos adyacentes
+          </button>
+        </div>
+      </section>
+
+      <p id="log" class="min-h-6 text-center text-sm text-neutral-500"></p>
     </main>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
